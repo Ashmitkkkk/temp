@@ -1,0 +1,44 @@
+Alright ✅ — let’s talk about Kahn’s Algorithm in a real-life context.
+
+Quick Recap of Kahn’s Algorithm
+Purpose: Performs Topological Sorting of a Directed Acyclic Graph (DAG)
+Idea:
+Find all nodes with in-degree = 0 (no dependencies)
+Insert them into a queue
+Remove one node from the queue, add it to output
+Reduce in-degree of its neighbors by 1
+If any neighbor’s in-degree becomes 0 → put it in queue
+Repeat until queue empty
+Real-Life Example Scenario
+Project Task Scheduling
+
+Imagine you’re managing a construction project:
+
+Tasks & Dependencies:
+Task ID	Task Name	Depends On
+1	Lay foundation	None
+2	Build walls	1
+3	Install roof	2
+4	Paint walls	2
+5	Install windows	2
+6	Final inspection	3, 4, 5
+Dependency Graph
+This forms a DAG:
+
+markdown
+Copy code
+1 → 2 → 3 → 6
+      ↘ 4 ↗
+      ↘ 5 ↗
+How Kahn’s Algorithm applies:
+Find tasks with no prerequisites → Task 1
+Queue = [1]
+Remove 1, output = [1], reduce in-degree of 2.
+Now Task 2 has no dependencies → enqueue it.
+Remove 2, output = [1, 2], reduce in-degree of 3, 4, 5.
+Tasks 3, 4, 5 now have in-degree 0 → enqueue all.
+Continue removing and reducing until you get:
+css
+Copy code
+Topological Order: [1, 2, 3, 4, 5, 6]
+This gives the valid sequence to execute tasks without breaking dependencies.
